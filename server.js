@@ -4,7 +4,7 @@ var path = require('path');
 var mime = require('mime');
 var cache = {};
 
-
+var chatServer = require('./lib/chat_server');
 var server = http.createServer(function (req, res) {
 	var filePath = false;
 	if (req.url == '/') {
@@ -19,7 +19,7 @@ var server = http.createServer(function (req, res) {
 server.listen(3000, function () {
 	console.log('Server listening on port 3000');
 });
-
+chatServer.listen(server);
 
 
 function sendFile (response, filePath, fileContents) {
